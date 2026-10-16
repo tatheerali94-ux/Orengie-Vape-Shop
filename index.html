@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orengie Vape Shop USJ | Fast Local Vape Delivery</title>
+<meta name="description" content="Orengie Vape Shop in USJ, Subang Jaya. Order on WhatsApp with same-day express delivery. Strictly 18+ only.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --orange: #F7790F;
+    --orange-deep: #D9600A;
+    --orange-soft: #FFE9D4;
+    --orange-subtle: #FFF5EC;
+    --ink: #2B1708;
+    --ink-light: #5a4636;
+    --paper: #FFFAF5;
+    --white: #ffffff;
+    --green: #25D366;
+    --green-dark: #1ea952;
+    --radius: 18px;
+    --shadow: 0 10px 30px rgba(43, 23, 8, 0.08);
+    --shadow-hover: 0 16px 36px rgba(247, 121, 15, 0.18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; }
+  :focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+  .wrap { width: min(1120px, 100% - 40px); margin-inline: auto; }
+
+  /* Header */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(255, 250, 245, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--orange-soft);
+    transition: box-shadow 0.25s ease;
+  }
+  header.scrolled { box-shadow: 0 4px 20px rgba(43, 23, 8, 0.06); }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.2rem; letter-spacing: .02em; }
+  .brand-logo-fallback {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--orange); color: var(--white);
+    display: grid; place-items: center; font-weight: 800; font-size: 1.1rem;
+    box-shadow: 0 4px 10px rgba(247, 121, 15, 0.35);
+  }
+  nav ul { display: flex; gap: 28px; list-style: none; font-weight: 600; font-size: .95rem; }
+  nav a { transition: color .2s; }
+  nav a:hover { color: var(--orange-deep); }
+  .nav-right { display: flex; align-items: center; gap: 12px; }
+
+  /* Mobile menu button */
+  .menu-toggle {
+    display: none; background: transparent; border: none;
+    cursor: pointer; padding: 8px; color: var(--ink);
+  }
+  .menu-toggle svg { width: 26px; height: 26px; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 13px 26px; border-radius: 999px; font-weight: 700;
+    border: 0; cursor: pointer; font-size: .96rem;
+    transition: transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-dark { background: var(--ink); color: var(--white); }
+  .btn-dark:hover { box-shadow: 0 8px 20px rgba(43,23,8,0.25); }
+  .btn-light { background: var(--white); color: var(--orange-deep); }
+  .btn-light:hover { box-shadow: 0 8px 20px rgba(255,255,255,0.4); }
+  .btn-wa { background: var(--green); color: var(--white); }
+  .btn-wa:hover { background: var(--green-dark); box-shadow: 0 8px 20px rgba(37,211,102,0.35); }
+  .btn-sm { padding: 9px 18px; font-size: .88rem; }
+
+  /* Hero */
+  .hero { background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%); color: var(--white); position: relative; overflow: hidden; }
+  .hero .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: center; padding: 70px 0 80px; }
+  .badge-status {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.3);
+    padding: 6px 14px; border-radius: 999px; font-size: .84rem; font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .status-dot { width: 9px; height: 9px; border-radius: 50%; background: #48ff79; animation: pulse 1.8s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(.8); } }
+  .hero h1 { font-size: clamp(2.3rem, 5vw, 4rem); line-height: 1.08; font-weight: 800; letter-spacing: -.02em; }
+  .hero p { margin: 20px 0 30px; font-size: 1.12rem; max-width: 32em; color: #FFF3E6; }
+  .hero .actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero-logo-box {
+    justify-self: center; width: min(310px, 75vw); aspect-ratio: 1;
+    border-radius: 50%; background: var(--white); display: grid; place-items: center;
+    box-shadow: 0 0 0 16px rgba(255,255,255,.18), 0 0 0 32px rgba(255,255,255,.1);
+    position: relative;
+  }
+  .hero-logo-box img { width: 85%; border-radius: 50%; }
+  .quick-chip {
+    position: absolute; bottom: 8px; background: var(--ink); color: #fff;
+    padding: 7px 16px; border-radius: 999px; font-size: .78rem; font-weight: 700;
+    box-shadow: 0 6px 16px rgba(0,0,0,.2);
+  }
+  .hero-strip { background: var(--ink); color: var(--orange-soft); font-weight: 600; font-size: .9rem; border-top: 1px solid rgba(255,255,255,0.1); }
+  .hero-strip .wrap { display: flex; gap: 12px 34px; flex-wrap: wrap; justify-content: center; padding: 14px 0; }
+  .hero-strip span::before { content: "✓ "; color: var(--orange); }
+
+  section { padding: 80px 0; }
+  .sec-header { text-align: center; max-width: 620px; margin: 0 auto 48px; }
+  h2 { font-size: clamp(1.8rem, 3.8vw, 2.5rem); line-height: 1.15; font-weight: 800; letter-spacing: -.01em; margin-bottom: 10px; }
+  .lead { color: var(--ink-light); font-size: 1.05rem; }
+
+  /* Interactive WhatsApp Order Builder Card */
+  .builder-section { background: var(--orange-subtle); border-top: 1px solid var(--orange-soft); border-bottom: 1px solid var(--orange-soft); }
+  .builder-card {
+    background: var(--white); border-radius: 24px; padding: 36px;
+    box-shadow: var(--shadow); border: 2px solid var(--orange-soft);
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 36px;
+  }
+  .form-group { margin-bottom: 18px; }
+  .form-group label { display: block; font-weight: 700; font-size: .9rem; margin-bottom: 8px; color: var(--ink); }
+  .form-control {
+    width: 100%; padding: 12px 16px; border-radius: 12px;
+    border: 1.5px solid #e2d2c3; font-family: inherit; font-size: .95rem;
+    background: var(--paper); transition: border-color .2s;
+  }
+  .form-control:focus { outline: none; border-color: var(--orange); background: #fff; }
+  .preview-box {
+    background: #EFEAE2; border-radius: 18px; padding: 22px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    border: 1px solid #dfd8cc; position: relative;
+  }
+  .chat-bubble {
+    background: #ffffff; border-radius: 12px 12px 12px 2px;
+    padding: 14px 18px; font-size: .92rem; line-height: 1.5; color: #111;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06); white-space: pre-line; word-break: break-word;
+  }
+  .chat-bubble-time { display: block; text-align: right; font-size: .72rem; color: #888; margin-top: 6px; }
+
+  /* Products Tab Filter */
+  .filter-pills { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+  .filter-btn {
+    padding: 8px 20px; border-radius: 999px; border: 1.5px solid var(--orange-soft);
+    background: var(--white); color: var(--ink); font-weight: 600; font-size: .9rem;
+    cursor: pointer; transition: all .2s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--orange); color: var(--white); border-color: var(--orange);
+    box-shadow: 0 4px 12px rgba(247,121,15,0.25);
+  }
+  .cats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+  .cat {
+    background: var(--white); border-radius: var(--radius); padding: 24px;
+    box-shadow: var(--shadow); border: 2px solid transparent; transition: all .25s ease;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .cat:hover { transform: translateY(-4px); border-color: var(--orange); box-shadow: var(--shadow-hover); }
+  .cat h3 { font-size: 1.12rem; margin-bottom: 6px; }
+  .cat p { font-size: .88rem; color: var(--ink-light); margin-bottom: 18px; }
+  .cat-btn {
+    align-self: flex-start; color: var(--orange-deep); font-weight: 700;
+    font-size: .88rem; display: inline-flex; align-items: center; gap: 4px;
+    background: none; border: none; cursor: pointer; padding: 0;
+  }
+  .cat-btn:hover { text-decoration: underline; }
+
+  /* Steps */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; counter-reset: s; }
+  .step {
+    background: var(--white); border-radius: var(--radius); padding: 32px 26px;
+    border: 2px solid var(--orange-soft); counter-increment: s; position: relative;
+    box-shadow: var(--shadow); transition: transform .2s;
+  }
+  .step:hover { transform: translateY(-3px); }
+  .step::before {
+    content: counter(s); display: grid; place-items: center;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--orange); color: var(--white); font-weight: 800; margin-bottom: 16px;
+  }
+  .step h3 { font-size: 1.18rem; margin-bottom: 8px; }
+  .step p { color: var(--ink-light); font-size: .95rem; }
+
+  /* Delivery Check Tool */
+  .zone-checker {
+    background: var(--white); border-radius: var(--radius); padding: 28px;
+    border: 2px solid var(--orange-soft); margin-top: 36px;
+  }
+  .zone-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+  .zone-chip {
+    padding: 8px 16px; border-radius: 12px; background: var(--paper);
+    border: 1px solid #e6d7c8; font-size: .88rem; font-weight: 600; cursor: pointer;
+    transition: all .2s;
+  }
+  .zone-chip:hover, .zone-chip.selected { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .zone-result {
+    margin-top: 18px; padding: 14px 18px; border-radius: 12px;
+    background: #eafaf1; color: #155724; font-weight: 600; font-size: .92rem;
+    display: none;
+  }
+
+  /* Visit */
+  .visit .grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 32px; align-items: stretch; }
+  .info { display: grid; gap: 16px; align-content: start; }
+  .info-card {
+    background: var(--white); border-radius: var(--radius); padding: 20px 24px;
+    border: 2px solid var(--orange-soft); box-shadow: var(--shadow);
+  }
+  .info-card h3 { font-size: .9rem; color: var(--orange-deep); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 4px; }
+  .info-card p, .info-card a { font-weight: 600; color: var(--ink); }
+  .map { border-radius: var(--radius); overflow: hidden; min-height: 360px; border: 2px solid var(--orange-soft); box-shadow: var(--shadow); }
+  .map iframe { width: 100%; height: 100%; min-height: 360px; border: 0; }
+
+  /* FAQ Accordion */
+  .faq-list { max-width: 760px; margin: 0 auto; display: grid; gap: 12px; }
+  .faq-item {
+    background: var(--white); border-radius: 14px; border: 1.5px solid var(--orange-soft);
+    overflow: hidden; transition: border-color .2s;
+  }
+  .faq-btn {
+    width: 100%; text-align: left; padding: 18px 22px; font-weight: 700;
+    font-size: 1rem; color: var(--ink); background: none; border: none; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .faq-btn span.icon { font-size: 1.3rem; transition: transform .25s ease; color: var(--orange); }
+  .faq-content { padding: 0 22px 18px; color: var(--ink-light); font-size: .94rem; display: none; }
+  .faq-item.open { border-color: var(--orange); }
+  .faq-item.open .faq-btn span.icon { transform: rotate(45deg); }
+  .faq-item.open .faq-content { display: block; }
+
+  /* CTA Band */
+  .cta { background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%); color: var(--white); text-align: center; }
+  .cta p { margin: 0 auto 28px; max-width: 32em; color: #FFF3E6; }
+
+  footer { background: var(--ink); color: #d9c4b0; padding: 44px 0 36px; font-size: .88rem; }
+  footer .wrap { display: grid; gap: 12px; }
+  footer strong { color: var(--white); font-size: 1.05rem; }
+  .nicotine-alert {
+    border-left: 3px solid var(--orange); padding-left: 14px;
+    margin: 10px 0; color: #ffc99f; font-size: .82rem;
+  }
+
+  /* Floating WhatsApp */
+  .fab-container { position: fixed; right: 20px; bottom: 20px; z-index: 50; display: flex; align-items: center; gap: 10px; }
+  .fab-tooltip {
+    background: var(--ink); color: #fff; font-size: .8rem; font-weight: 700;
+    padding: 6px 14px; border-radius: 999px; box-shadow: 0 4px 12px rgba(0,0,0,.2);
+    display: none; animation: fadeIn .3s;
+  }
+  @media(min-width: 768px) { .fab-tooltip { display: block; } }
+  .fab {
+    background: var(--green); color: #fff; width: 62px; height: 62px;
+    border-radius: 50%; display: grid; place-items: center;
+    box-shadow: 0 8px 24px rgba(37,211,102,.45); transition: transform .2s cubic-bezier(.34,1.56,.64,1);
+  }
+  .fab:hover { transform: scale(1.08); }
+  .fab svg { width: 34px; height: 34px; fill: #fff; }
+
+  /* Age Gate Modal */
+  #gate {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(43, 23, 8, 0.85); backdrop-filter: blur(8px);
+    display: none; place-items: center; padding: 20px;
+  }
+  #gate.show { display: grid; }
+  .gate-box {
+    background: var(--white); color: var(--ink); border-radius: 28px;
+    padding: 40px 32px; max-width: 440px; text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3); border: 3px solid var(--orange);
+  }
+  .gate-icon {
+    width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 16px;
+    background: var(--orange-soft); color: var(--orange-deep);
+    display: grid; place-items: center; font-weight: 800; font-size: 1.5rem;
+  }
+  .gate-box h2 { font-size: 1.6rem; margin-bottom: 8px; }
+  .gate-box p { color: var(--ink-light); margin-bottom: 24px; font-size: .94rem; }
+  .gate-box .row { display: grid; gap: 12px; }
+  .btn-ghost { background: var(--orange-soft); color: var(--ink); }
+  body.locked { overflow: hidden; }
+
+  /* Mobile Responsive */
+  @media (max-width: 860px) {
+    .menu-toggle { display: block; }
+    nav ul {
+      display: none; position: absolute; top: 72px; left: 0; right: 0;
+      background: var(--paper); border-bottom: 2px solid var(--orange-soft);
+      flex-direction: column; padding: 24px 20px; gap: 18px; box-shadow: var(--shadow);
+    }
+    nav ul.open { display: flex; }
+    .hero .wrap { grid-template-columns: 1fr; padding: 50px 0 60px; text-align: center; }
+    .badge-status { margin: 0 auto 18px; }
+    .hero p { margin-inline: auto; }
+    .hero .actions { justify-content: center; }
+    .hero-logo-box { order: -1; width: 220px; }
+    .builder-card { grid-template-columns: 1fr; padding: 24px; }
+    .steps { grid-template-columns: 1fr; }
+    .visit .grid { grid-template-columns: 1fr; }
+    section { padding: 56px 0; }
+  }
+</style>
+</head>
+<body class="locked">
+
+<!-- AGE GATE -->
+<div id="gate" class="show" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <div class="gate-box">
+    <div class="gate-icon">18+</div>
+    <h2 id="gate-title">Age Verification</h2>
+    <p>This website offers vape products intended strictly for adults aged 18 and above in Malaysia. Are you 18 or older?</p>
+    <div class="row">
+      <button class="btn btn-dark" id="btn-verify-yes">Yes, I am 18 or older</button>
+      <a class="btn btn-ghost" href="https://www.google.com">No, exit site</a>
+    </div>
+  </div>
+</div>
+
+<!-- STICKY HEADER -->
+<header id="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <div class="brand-logo-fallback">O</div>
+      <span>ORENGIE</span>
+    </a>
+    
+    <nav aria-label="Main Navigation">
+      <ul id="nav-list">
+        <li><a href="#how" class="nav-link">How it works</a></li>
+        <li><a href="#order-builder" class="nav-link">Quick Order</a></li>
+        <li><a href="#products" class="nav-link">Products</a></li>
+        <li><a href="#coverage" class="nav-link">Delivery Area</a></li>
+        <li><a href="#visit" class="nav-link">Store & Map</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-right">
+      <button class="menu-toggle" id="menu-btn" aria-label="Toggle navigation menu">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+      </button>
+      <a class="btn btn-dark btn-sm" href="#order-builder">Order Online</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="badge-status">
+          <span class="status-dot" id="live-dot"></span>
+          <span id="live-hours-text">Checking shop status...</span>
+        </div>
+        <h1>Your vape delivery buddy in USJ.</h1>
+        <p>Direct from our physical store in Subang Jaya to your doorstep. Tell us your flavor, we pack it and dispatch via runner.</p>
+        <div class="actions">
+          <a class="btn btn-dark" href="#order-builder">Create Instant Order</a>
+          <a class="btn btn-light" href="#visit">Visit USJ Shop</a>
+        </div>
+      </div>
+      
+      <div class="hero-logo-box">
+        <!-- Logo image with graceful fallback -->
+        <img src="logo.png" alt="Orengie Vape Shop Logo" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 100 100\'><circle cx=\'50\' cy=\'50\' r=\'46\' fill=\'%23F7790F\'/><text x=\'50\' y=\'62\' font-size=\'38\' text-anchor=\'middle\' fill=\'white\' font-family=\'sans-serif\' font-weight=\'bold\'>O</text></svg>';">
+        <span class="quick-chip">⚡ 45-Min Express Runner</span>
+      </div>
+    </div>
+
+    <div class="hero-strip">
+      <div class="wrap">
+        <span>Delivery from USJ</span>
+        <span>WhatsApp Order Assistant</span>
+        <span>Physical Walk-in Store</span>
+        <span>Adults 18+ Only</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-header">
+        <h2>Simple 3-Step Express Ordering</h2>
+        <p class="lead">Skip app downloads and complicated logins. Order directly via WhatsApp.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <h3>1. Pick or Ask</h3>
+          <p>Use the Quick Builder below or just text us your preferred disposable brand, pod, or flavor.</p>
+        </div>
+        <div class="step">
+          <h3>2. Instant Confirm</h3>
+          <p>We check physical inventory, confirm stock and total price with transparent runner fees.</p>
+        </div>
+        <div class="step">
+          <h3>3. Doorstep Delivery</h3>
+          <p>Our runner drops off your order. Please show IC/Passport verifying 18+ upon receipt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE WHATSAPP BUILDER SECTION -->
+  <section id="order-builder" class="builder-section">
+    <div class="wrap">
+      <div class="sec-header">
+        <h2>WhatsApp Order Assistant</h2>
+        <p class="lead">Configure your order details. We'll generate a formatted WhatsApp message ready to send.</p>
+      </div>
+
+      <div class="builder-card">
+        <!-- Form Controls -->
+        <div>
+          <div class="form-group">
+            <label for="order-cat">Item Category</label>
+            <select id="order-cat" class="form-control">
+              <option value="Disposable Pods">Disposable Pods</option>
+              <option value="Closed / Prefilled Pods (e.g. Relx)">Closed Pod Cartridges</option>
+              <option value="Open Pod Device Kit">Pod Devices / Starter Kits</option>
+              <option value="Salt Nic E-Liquid">Salt Nic Juice</option>
+              <option value="Freebase E-Liquid">Freebase Juice</option>
+              <option value="Replacement Coils / Accessories">Replacement Coils / Accs</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="order-desc">Flavor / Brand / Model Preference</label>
+            <input type="text" id="order-desc" class="form-control" placeholder="e.g. Mango Ice 5%, or Caliburn G coils">
+          </div>
+
+          <div class="form-group">
+            <label for="order-location">Delivery Area</label>
+            <select id="order-location" class="form-control">
+              <option value="USJ (Subang Jaya)">USJ (Subang Jaya)</option>
+              <option value="SS15 / SS14 / SS19 (Subang Jaya)">SS12 - SS19 (Subang Jaya)</option>
+              <option value="Bandar Sunway">Bandar Sunway</option>
+              <option value="Puchong">Puchong</option>
+              <option value="Shah Alam">Shah Alam</option>
+              <option value="Store Self Pick-up">Self Pick-up at Store</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="order-notes">Special Instructions (Optional)</label>
+            <input type="text" id="order-notes" class="form-control" placeholder="e.g. Leave with security, need by 8pm">
+          </div>
+        </div>
+
+        <!-- Live Message Preview & Button -->
+        <div class="preview-box">
+          <div>
+            <div style="font-weight:700; font-size:.84rem; color:var(--ink-light); margin-bottom:10px; display:flex; justify-content:space-between;">
+              <span>WHATSAPP LIVE PREVIEW</span>
+              <span>Encrypted</span>
+            </div>
+            <div class="chat-bubble" id="preview-text">
+              Hi Orengie! I'd like to check stock & order:
+              - Category: Disposable Pods
+              - Details: Any popular flavor
+              - Location: USJ (Subang Jaya)
+            </div>
+          </div>
+
+          <div style="margin-top: 20px;">
+            <a id="btn-send-wa" class="btn btn-wa" style="width: 100%;" href="#" target="_blank" rel="noopener">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.043.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
+              Send to Orengie WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS WITH CATEGORY FILTER -->
+  <section id="products" class="products">
+    <div class="wrap">
+      <div class="sec-header">
+        <h2>Explore Inventory</h2>
+        <p class="lead">Tap any item category to immediately populate your WhatsApp inquiry.</p>
+        
+        <!-- Filter Pills -->
+        <div class="filter-pills">
+          <button class="filter-btn active" data-filter="all">All Products</button>
+          <button class="filter-btn" data-filter="disposable">Disposables</button>
+          <button class="filter-btn" data-filter="pods">Pods & Devices</button>
+          <button class="filter-btn" data-filter="juices">E-Liquids</button>
+        </div>
+      </div>
+
+      <div class="cats" id="product-grid">
+        <div class="cat" data-type="disposable">
+          <div>
+            <h3>Disposable Pods</h3>
+            <p>High puff counts, mesh coils, re-chargeable bar styles. Ready to vape out of the box.</p>
+          </div>
+          <button class="cat-btn" onclick="quickFill('Disposable Pods')">Inquire stock &rarr;</button>
+        </div>
+
+        <div class="cat" data-type="pods">
+          <div>
+            <h3>Prefilled Pod Cartridges</h3>
+            <p>Compatible replacement pods for major market pod systems with multiple nicotine strengths.</p>
+          </div>
+          <button class="cat-btn" onclick="quickFill('Closed / Prefilled Pods')">Inquire flavors &rarr;</button>
+        </div>
+
+        <div class="cat" data-type="juices">
+          <div>
+            <h3>Salt Nic E-Liquids</h3>
+            <p>Smooth throat hit, ideal for low wattage pod systems. Fruity, creamy, minty, and tobacco blends.</p>
+          </div>
+          <button class="cat-btn" onclick="quickFill('Salt Nic E-Liquid')">Check salt nic &rarr;</button>
+        </div>
+
+        <div class="cat" data-type="juices">
+          <div>
+            <h3>Freebase Juices</h3>
+            <p>Rich vapor production and full flavor profiles for sub-ohm tanks and rebuildable atomizers.</p>
+          </div>
+          <button class="cat-btn" onclick="quickFill('Freebase E-Liquid')">Check freebase &rarr;</button>
+        </div>
+
+        <div class="cat" data-type="pods">
+          <div>
+            <h3>Open Pod Starter Kits</h3>
+            <p>Refillable systems, compact and economical long-term devices with adjustable airflow.</p>
+          </div>
+          <button class="cat-btn" onclick="quickFill('Open Pod Device Kit')">View kits &rarr;</button>
+        </div>
+
+        <div class="cat" data-type="pods">
+          <div>
+            <h3>Coils, Pods & Accessories</h3>
+            <p>Authentic replacement coils, empty pods, Type-C cables, 18650/21700 external batteries.</p>
+          </div>
+          <button class="cat-btn" onclick="quickFill('Replacement Coils / Accessories')">Find accessories &rarr;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COVERAGE ESTIMATOR -->
+  <section id="coverage" style="background: var(--paper);">
+    <div class="wrap">
+      <div class="sec-header">
+        <h2>Delivery Coverage & Estimate</h2>
+        <p class="lead">Select your neighborhood in Selangor to check average runner transit time.</p>
+      </div>
+
+      <div class="zone-checker">
+        <strong>Choose your location:</strong>
+        <div class="zone-chips">
+          <div class="zone-chip" data-time="30 - 45 mins" data-fee="RM 5 - 8" data-zone="USJ 1 to USJ 21">USJ 1 - 21</div>
+          <div class="zone-chip" data-time="35 - 50 mins" data-fee="RM 7 - 10" data-zone="Subang Jaya SS12 - SS19">Subang Jaya SS12-SS19</div>
+          <div class="zone-chip" data-time="40 - 60 mins" data-fee="RM 8 - 12" data-zone="Bandar Sunway">Bandar Sunway</div>
+          <div class="zone-chip" data-time="45 - 65 mins" data-fee="RM 10 - 14" data-zone="Bandar Kinrara / Puchong Jaya">Puchong / Kinrara</div>
+          <div class="zone-chip" data-time="50 - 75 mins" data-fee="RM 12 - 16" data-zone="Shah Alam (Seksyen 1 - 25)">Shah Alam</div>
+        </div>
+
+        <div class="zone-result" id="zone-display"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORE LOCATION & MAP -->
+  <section id="visit" class="visit">
+    <div class="wrap">
+      <div class="sec-header">
+        <h2>Visit Orengie Vape Shop</h2>
+        <p class="lead">Prefer to try in person or need assistance setting up your new device? Come on over.</p>
+      </div>
+
+      <div class="grid">
+        <div class="info">
+          <div class="info-card">
+            <h3>Store Location</h3>
+            <p>USJ, 47600 Subang Jaya, Selangor, Malaysia</p>
+          </div>
+          <div class="info-card">
+            <h3>Operating Hours</h3>
+            <p id="store-hours-detail">Open Daily: 12:00 PM – 12:00 AM (Midnight)</p>
+          </div>
+          <div class="info-card">
+            <h3>Instant Contact</h3>
+            <p><a href="https://wa.me/60123456789" target="_blank" rel="noopener">+60 12-345 6789</a></p>
+          </div>
+          <div class="info-card">
+            <h3>Payment Accepted</h3>
+            <p>DuitNow QR, Touch 'n Go eWallet, Online Banking, Cash on Pick-up</p>
+          </div>
+        </div>
+
+        <div class="map">
+          <iframe title="Orengie Vape Shop USJ on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=3.0436051,101.5832266&z=16&output=embed"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCORDION FAQ -->
+  <section id="faq" style="background: var(--orange-subtle);">
+    <div class="wrap">
+      <div class="sec-header">
+        <h2>Frequently Asked Questions</h2>
+        <p class="lead">Everything you need to know about ordering and deliveries.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-btn">How quickly does the runner arrive? <span class="icon">+</span></button>
+          <div class="faq-content">For orders within USJ and immediate Subang areas, runner dispatch typically takes 30 to 50 minutes depending on weather and peak delivery hours.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn">What are the age verification requirements? <span class="icon">+</span></button>
+          <div class="faq-content">Malaysian regulation strictly requires purchasers to be 18 years of age or older. Our riders or store staff reserve the right to verify a valid government photo ID (MyKad or Passport).</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn">What payment methods are supported? <span class="icon">+</span></button>
+          <div class="faq-content">We accept instant DuitNow QR pay, TnG eWallet transfers, and direct bank transfers prior to runner dispatch. Walk-in customers can also pay cash.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn">What if a device arrives defective (DOA)? <span class="icon">+</span></button>
+          <div class="faq-content">Please test your device immediately upon receipt. In the rare event of a Dead-On-Arrival item, notify us via WhatsApp within 24 hours with a short video clip for replacement assistance.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="wrap">
+      <h2>Need a Restock Right Now?</h2>
+      <p>Hit WhatsApp, tell us what you're running low on, and let our runners handle the traffic.</p>
+      <a class="btn btn-dark" href="https://wa.me/60123456789?text=Hi%20Orengie%2C%20I%20need%20a%20restock%20now!" target="_blank" rel="noopener">Chat with Us Directly</a>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <strong>Orengie Vape Shop, USJ Subang Jaya</strong>
+    <div class="nicotine-alert">
+      HEALTH WARNING: Products sold on this website contain nicotine, which is a highly addictive substance. Strictly not for sale to minors under the age of 18, pregnant women, or individuals with heart conditions.
+    </div>
+    <span>&copy; <span id="yr"></span> Orengie Vape Shop. All rights reserved.</span>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<div class="fab-container">
+  <span class="fab-tooltip">Chat with store runner ⚡</span>
+  <a class="fab" id="floating-wa" href="https://wa.me/60123456789?text=Hi%20Orengie%2C%20I%27d%20like%20to%20order" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.5c0 2.3.6 4.4 1.8 6.3L3 29l7.4-1.9c1.8 1 3.6 1.5 5.6 1.5 7 0 12.7-5.6 12.7-12.5S23 3 16 3zm0 22.9c-1.8 0-3.5-.5-5-1.4l-.4-.2-4.4 1.1 1.2-4.2-.3-.4a10 10 0 0 1-1.6-5.4C5.5 9.9 10.2 5.4 16 5.4s10.5 4.5 10.5 10.1S21.800 25.900 16 25.900zm5.800-7.500c-.3-.2-1.900-.9-2.200-1s-.5-.2-.7.200-.8 1-1 1.200-.4.200-.7.100a8.500 8.500 0 0 1-4.200-3.700c-.3-.6.300-.5.900-1.700.1-.2 0-.4 0-.5l-1-2.300c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.100-.8.400s-1 1-1 2.400 1 2.800 1.200 3c.2.200 2.100 3.200 5.100 4.500 1.900.8 2.600.9 3.600.7.600-.1 1.900-.8 2.100-1.500.3-.7.300-1.400.2-1.500-.1-.2-.3-.3-.6-.4z"/></svg>
+  </a>
+</div>
+
+<script>
+  const WA_NUMBER = "60123456789"; // Replace with store's actual WhatsApp phone number
+
+  // Year dynamic update
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // 1. AGE GATE LOGIC
+  (function initAgeGate() {
+    const gate = document.getElementById('gate');
+    function unlock() {
+      gate.classList.remove('show');
+      document.body.classList.remove('locked');
+    }
+    try {
+      if (sessionStorage.getItem('orengie_age_verified') === 'true') {
+        unlock();
+      }
+    } catch(e) {}
+
+    document.getElementById('btn-verify-yes').addEventListener('click', function() {
+      try {
+        sessionStorage.setItem('orengie_age_verified', 'true');
+      } catch(e) {}
+      unlock();
+    });
+  })();
+
+  // 2. LIVE STORE STATUS (12:00 PM to 12:00 AM)
+  (function updateLiveStatus() {
+    const dot = document.getElementById('live-dot');
+    const text = document.getElementById('live-hours-text');
+    const now = new Date();
+    const currentHour = now.getHours();
+
+    // Open from 12:00 (noon) to 23:59
+    const isOpen = currentHour >= 12 && currentHour < 24;
+
+    if (isOpen) {
+      dot.style.background = '#48ff79';
+      text.textContent = 'Open Now — USJ Shop Closes at Midnight';
+    } else {
+      dot.style.background = '#ff4b4b';
+      text.textContent = 'Currently Closed — Reopens at 12:00 PM';
+    }
+  })();
+
+  // 3. WHATSAPP ORDER BUILDER INTERACTIVITY
+  const catInput = document.getElementById('order-cat');
+  const descInput = document.getElementById('order-desc');
+  const locInput = document.getElementById('order-location');
+  const notesInput = document.getElementById('order-notes');
+  const previewBox = document.getElementById('preview-text');
+  const sendBtn = document.getElementById('btn-send-wa');
+
+  function updateOrderMessage() {
+    const cat = catInput.value;
+    const desc = descInput.value.trim() || 'Any recommended / in-stock flavors';
+    const loc = locInput.value;
+    const notes = notesInput.value.trim();
+
+    let msg = `Hi Orengie! I'd like to check stock & order:\n`;
+    msg += `• Item: ${cat}\n`;
+    msg += `• Preference: ${desc}\n`;
+    msg += `• Delivery Area: ${loc}`;
+    if (notes) {
+      msg += `\n• Notes: ${notes}`;
+    }
+
+    previewBox.textContent = msg;
+    sendBtn.href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+  }
+
+  [catInput, descInput, locInput, notesInput].forEach(el => {
+    el.addEventListener('input', updateOrderMessage);
+    el.addEventListener('change', updateOrderMessage);
+  });
+  updateOrderMessage();
+
+  // Helper function for quick category pill clicks
+  window.quickFill = function(categoryName) {
+    catInput.value = categoryName;
+    updateOrderMessage();
+    document.getElementById('order-builder').scrollIntoView({ behavior: 'smooth' });
+    descInput.focus();
+  };
+
+  // 4. PRODUCT FILTERING
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const products = document.querySelectorAll('#product-grid .cat');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const target = btn.dataset.filter;
+
+      products.forEach(p => {
+        if (target === 'all' || p.dataset.type === target) {
+          p.style.display = 'flex';
+        } else {
+          p.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // 5. DELIVERY ZONE CHIPS CALCULATOR
+  const chips = document.querySelectorAll('.zone-chip');
+  const zoneDisplay = document.getElementById('zone-display');
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('selected'));
+      chip.classList.add('selected');
+      const zone = chip.dataset.zone;
+      const time = chip.dataset.time;
+      const fee = chip.dataset.fee;
+
+      zoneDisplay.style.display = 'block';
+      zoneDisplay.innerHTML = `📍 <strong>${zone}</strong>: Estimated delivery time <strong>${time}</strong> | Runner fee approx <strong>${fee}</strong>.`;
+    });
+  });
+
+  // 6. ACCORDION FAQ
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // 7. MOBILE NAVIGATION TOGGLE
+  const menuBtn = document.getElementById('menu-btn');
+  const navList = document.getElementById('nav-list');
+  menuBtn.addEventListener('click', () => {
+    navList.classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => navList.classList.remove('open'));
+  });
+
+  // Header scroll shadow effect
+  window.addEventListener('scroll', () => {
+    const header = document.getElementById('site-header');
+    if (window.scrollY > 20) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+</script>
+</body>
+</html>
